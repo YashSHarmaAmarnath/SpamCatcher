@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spam Email Detector</title>
+     <style>
+        *{
+            padding: 0%;
+            margin: 0%;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        
+        body{
+            background-color: rgb(48, 49, 51);
+            overflow-x: hidden;
+        }
+        
+        
+        .nav{
+            background-color: rgb(255, 45, 45);
+            color: white;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .email_input{
+            padding: 15px;
+            height: 60vh;
+            width: 50vw;
+            min-height: 60vh;
+            min-width: 50vw;
+            max-width: 50vw;
+            max-height: 60vh;
+            left: calc(50vw - 25vw);
+            margin-top: 50px;
+            font-size: 20px;
+            background-color: #484848;
+            color: white;
+            border-radius: 20px;
+            border: none;
+        } 
+        
+        .submit:hover{
+            background-color: rgb(249, 23, 23);
+        }
+        .submit{
+            background-color: rgb(255, 61, 61);
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 20px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        
+        .container,form{
+            width: 100vw;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        .result{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            font-size: 24px;
+            color: white;
+            width: 100vw;
+            height: 100px;
+            margin: 0px;
+        }
+
+        .spam{
+            background-color: rgb(227, 6, 6);
+        }
+        .ham{
+            background-color: #009252;
+        }
+     </style>
+</head>
+<body>
+    <nav class="nav">
+        <h1>SpamCatcher</h1>
+    </nav>
+
+    <div class="container">
+        {% if spam is not none %}
+        {% if spam == 1 %}
+        <div class="result spam">
+            <h2>💀 Spam 💀</h2>
+            
+        </div>
+        {% elif spam == 0 %}
+        <div class="result ham">
+            <h2> ✅Not Spam✅ </h2>
+        </div>
+                {% endif %}
+        {% endif %}
+        {% if spam == 1 %}
+        <div class="spam " style="width: 100vw; display:flex; justify-content:center; padding:10px; color:white;">
+
+            <ol >
+                <li><u> Do Not Open:</u> Avoid opening suspicious emails.</li>   
+                <li><u> Do Not Click Links or Download Attachments:</u> Do not interact with content in the email.</li>   
+                <li><u> Mark as Spam:</u> Use your email client's feature to mark the email as spam.</li>   
+                <li><u> Delete the Email:</u> Remove the email from your inbox after marking it as spam.</li>   
+                <li><u> Report to Email Provider:</u> Use the "Report Spam" or "Report Phishing" option.</li>   
+                <li><u> Block Sender:</u> Add the sender to your blocked list.</li>   
+                <li><u> Update Spam Filters:</u> Ensure your spam filters are up-to-date.</li>   
+                <li><u> Use Anti-Spam Software:</u> Consider additional anti-spam tools.</li>   
+                <li><u> Update Security Software:</u> Keep your antivirus and anti-malware software updated.</li>   
+                <li><u> Enable Two-Factor Authentication:</u> Add an extra layer of security to your email account.</li>   
+        </ol>
+    </div>
+        {% endif %}
+        <form action="predict" method="post">
+            <textarea name="text" class="email_input" placeholder="Enter Email">{{ text }}</textarea><br>
+            <input class="submit" type="submit" value="Detect spam">
+        </form>
+        {% if spam is not none %}
+        
+            
+        {% endif %}
+    </div>
+</body>
+</html>
